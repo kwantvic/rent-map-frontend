@@ -62,7 +62,7 @@ const RentDetail: React.FC = () => {
               component="img"
               src={
                 activePlace.urlImage
-                  ? `http://localhost:8888/apartments/pictures/${activePlace.urlImage}`
+                  ? `${process.env.REACT_APP_BASE_API_URL}/apartments/pictures/${activePlace.urlImage}`
                   : uploadImg
               }
             />

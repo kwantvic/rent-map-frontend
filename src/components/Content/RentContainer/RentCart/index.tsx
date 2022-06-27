@@ -40,7 +40,7 @@ const RentCard: React.FC<FlatCardProps> = ({ props }) => {
               className={classes.media}
               src={
                 props.urlImage
-                  ? `http://localhost:8888/apartments/pictures/${props.urlImage}`
+                  ? `${process.env.REACT_APP_BASE_API_URL}/apartments/pictures/${props.urlImage}`
                   : image
               }
             />
