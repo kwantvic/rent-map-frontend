@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/rent-map-fronted/static/css/main.034e20ef.css",
-    "main.js": "/rent-map-fronted/static/js/main.960c4703.js",
-    "static/js/787.cda612ba.chunk.js": "/rent-map-fronted/static/js/787.cda612ba.chunk.js",
-    "index.html": "/rent-map-fronted/index.html",
-    "main.034e20ef.css.map": "/rent-map-fronted/static/css/main.034e20ef.css.map",
-    "main.960c4703.js.map": "/rent-map-fronted/static/js/main.960c4703.js.map",
-    "787.cda612ba.chunk.js.map": "/rent-map-fronted/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/rent-map-frontend/static/css/main.034e20ef.css",
+    "main.js": "/rent-map-frontend/static/js/main.754405fd.js",
+    "static/js/787.cda612ba.chunk.js": "/rent-map-frontend/static/js/787.cda612ba.chunk.js",
+    "index.html": "/rent-map-frontend/index.html",
+    "main.034e20ef.css.map": "/rent-map-frontend/static/css/main.034e20ef.css.map",
+    "main.754405fd.js.map": "/rent-map-frontend/static/js/main.754405fd.js.map",
+    "787.cda612ba.chunk.js.map": "/rent-map-frontend/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.034e20ef.css",
-    "static/js/main.960c4703.js"
+    "static/js/main.754405fd.js"
   ]
 }
