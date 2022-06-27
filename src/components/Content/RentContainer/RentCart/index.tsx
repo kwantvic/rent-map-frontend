@@ -72,10 +72,10 @@ const RentCard: React.FC<FlatCardProps> = ({ props }) => {
                   </Typography>
                 </Grid>
                 {props.description && (
-                  <Grid item>
+                  <Grid item width="100%">
                     <Typography
                       variant="h6"
-                      component="span"
+                      component="div"
                       className={classes.description}
                       color="text.secondary"
                     >

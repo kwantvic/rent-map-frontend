@@ -4,6 +4,7 @@ import { ActualBounds, CoordLatLng, NewLatLng } from './types';
 import rentApi from '../../../common/api/rentApi';
 import { UIContext } from '../UIContext';
 import { ApartmentItem } from '../../../common/api/types';
+import { pageSize } from '../../../common/constants';
 
 export const AppContext = React.createContext<AppContextProps>(
   {} as AppContextProps,
@@ -14,6 +15,7 @@ export interface AppContextProps {
   handleAdd: (bool: boolean) => void;
   isDetails: boolean;
   handleDetails: (bool: boolean) => void;
+  isLoading: boolean;
   places: CoordLatLng[];
   handlePlaces: (arr: CoordLatLng[]) => void;
   newPlace: NewLatLng | null;
@@ -27,6 +29,10 @@ export interface AppContextProps {
   handleItems: (itemsApart: ApartmentItem[]) => void;
   total: number;
   handleTotal: (x: number) => void;
+  currentPage: number;
+  handleCurrentPage: (x: number) => void;
+  hasMoreItems: boolean;
+  handleHasMoreItems: (bool: boolean) => void;
 }
 
 const AppContextProvider: React.FC<React.PropsWithChildren> = ({
@@ -36,6 +42,7 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = ({
 
   const [isAdd, setIsAdd] = React.useState(false);
   const [isDetails, setIsDetails] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [places, setPlaces] = React.useState<CoordLatLng[]>([]);
   const [newPlace, setNewPlace] = React.useState<NewLatLng | null>(null);
   const [bounds, setBounds] = React.useState<ActualBounds | null>(null);
@@ -46,14 +53,17 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = ({
   const [currentPage, setCurrentPage] = React.useState(0);
   const [total, setTotal] = React.useState(0);
   const [items, setItems] = React.useState<ApartmentItem[]>([]);
-
-  console.log('🧲', items);
+  const [hasMoreItems, setHasMoreItems] = React.useState(true);
 
   React.useEffect(() => {
     if (bounds) {
+      setIsLoading(true);
       (async () => {
         try {
-          await rentApi.getCoord(bounds).then((resp) => setPlaces(resp));
+          await rentApi
+            .getCoord(bounds)
+            .then((resp) => setPlaces(resp))
+            .then(() => setIsLoading(false));
         } catch (err) {
           setAlert({
             show: true,
@@ -74,7 +84,7 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = ({
         maxLat: bounds.maxLat,
         minLng: bounds.minLng,
         maxLng: bounds.maxLng,
-        pageSize: 1000,
+        pageSize,
         pageNumber: currentPage,
       };
       (async () => {
@@ -104,6 +114,7 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = ({
           handleAdd: (bool) => setIsAdd(bool),
           isDetails,
           handleDetails: (bool) => setIsDetails(bool),
+          isLoading,
           places,
           handlePlaces: (arr) => setPlaces(arr),
           newPlace,
@@ -117,12 +128,19 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = ({
           handleItems: (itemsApart) => setItems(itemsApart),
           total,
           handleTotal: (x) => setTotal(x),
+          currentPage,
+          handleCurrentPage: (x) => setCurrentPage(x),
+          hasMoreItems,
+          handleHasMoreItems: (bool) => setHasMoreItems(bool),
         }),
         [
           activePlace,
           activePlaceId,
+          currentPage,
+          hasMoreItems,
           isAdd,
           isDetails,
+          isLoading,
           items,
           newPlace,
           places,

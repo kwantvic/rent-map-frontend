@@ -29,6 +29,7 @@ const useStyles = makeStyles({
     display: '-webkit-box',
     lineClamp: 2,
     WebkitBoxOrient: 'vertical',
+    overflowWrap: 'break-word',
   },
 });
 export default useStyles;

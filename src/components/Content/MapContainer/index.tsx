@@ -18,6 +18,8 @@ const MapContainer: React.FC = () => {
     handleBounds,
     handleItems,
     handleTotal,
+    handleCurrentPage,
+    handleHasMoreItems,
   } = React.useContext(AppContext) as AppContextProps;
 
   const classes = useStyles();
@@ -40,6 +42,8 @@ const MapContainer: React.FC = () => {
       timerRef.current = setTimeout(() => {
         handleItems([]);
         handleTotal(0);
+        handleCurrentPage(0);
+        handleHasMoreItems(true);
         handleBounds({
           minLat: bounds.se.lat,
           maxLat: bounds.nw.lat,

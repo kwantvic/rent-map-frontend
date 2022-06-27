@@ -9,11 +9,7 @@ import rentApi from '../../../../common/api/rentApi';
 import { UIContext } from '../../../Unknown/UIContext';
 import uploadImg from '../CreateRent/ImgBlock/upload.png';
 
-interface FlatCardProps {
-  name?: string;
-}
-
-const RentDetail: React.FC<FlatCardProps> = () => {
+const RentDetail: React.FC = () => {
   const classes = useStyles();
   const { setAlert } = React.useContext(UIContext);
   const {
@@ -30,7 +26,6 @@ const RentDetail: React.FC<FlatCardProps> = () => {
   };
 
   React.useEffect(() => {
-    console.log('🧲');
     if (activePlaceId) {
       (async () => {
         try {
@@ -84,7 +79,7 @@ const RentDetail: React.FC<FlatCardProps> = () => {
           </Grid>
           <Grid item>
             <Box component="div" className={classes.date}>
-              {moment(activePlace.createdAt).format('D MMMM YYYY, h:mm:ss')}
+              {moment(activePlace.createdAt).format('D MMMM YYYY, HH:mm')}
             </Box>
           </Grid>
           {activePlace.description && (
