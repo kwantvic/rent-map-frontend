@@ -1,16 +1,22 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-import theme from './common/theme';
-import Root from './components/Unknown/Root';
+import theme from '../../../common/theme';
+import { UIContextProvider } from '../UIContext';
+import AppContextProvider from '../AppContext';
+import Root from '../Root';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Root />
+      <UIContextProvider>
+        <AppContextProvider>
+          <Root />
+        </AppContextProvider>
+      </UIContextProvider>
     </ThemeProvider>
   );
 };
 
-export default App;
+export default React.memo(App);
